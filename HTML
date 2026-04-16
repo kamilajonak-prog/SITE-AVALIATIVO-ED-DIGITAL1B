@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floricultura Natureza Viva | Design Sustentável</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar" role="navigation" aria-label="Menu Principal">
+            <div class="logo">Natureza<span>Viva</span></div>
+            <div class="accessibility-controls">
+                <button onclick="changeFontSize(1)" aria-label="Aumentar fonte">A+</button>
+                <button onclick="changeFontSize(-1)" aria-label="Diminuir fonte">A-</button>
+                <button onclick="toggleContrast()" id="contrast-toggle" aria-label="Alternar Alto Contraste">
+                    🌓 Contraste
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content reveal">
+                <h1 id="hero-title">A beleza que brota da terra</h1>
+                <p>Descubra espécies raras e dicas de cultivo para transformar seu ambiente.</p>
+                <a href="#catalogo" class="btn-primary">Ver Catálogo</a>
+            </div>
+        </section>
+
+        <section id="catalogo" class="section-padding" aria-labelledby="cat-title">
+            <h2 id="cat-title" class="section-title reveal">Nossas Espécies</h2>
+            <div id="flower-grid" class="grid-container reveal">
+                </div>
+        </section>
+
+        <section class="section-padding bg-soft" aria-labelledby="faq-title">
+            <h2 id="faq-title" class="section-title reveal">Cuidados Básicos</h2>
+            <div id="faq-container" class="accordion-container reveal">
+                </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2023 Natureza Viva - Design focado em Acessibilidade</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
