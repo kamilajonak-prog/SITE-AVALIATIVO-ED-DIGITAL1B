@@ -1,0 +1,83 @@
+// 1. GESTÃO DE DADOS (Simulando um banco de dados de flores)
+const flowerData = [
+    { nome: "Orquídea", desc: "Elegância e sofisticação para interiores.", img: "https://images.unsplash.com/photo-1534885322301-211443050e1a?w=400" },
+    { nome: "Girassol", desc: "Energia e luz para jardins externos.", img: "https://images.unsplash.com/photo-1470509037663-253afd7f0f51?w=400" },
+    { nome: "Lavanda", desc: "Perfume relaxante e propriedades medicinais.", img: "https://images.unsplash.com/photo-1520903074185-8ec362b39c5c?w=400" }
+];
+
+const faqData = [
+    { titulo: "Rega Ideal", conteudo: "A maioria das flores prefere regas nas primeiras horas da manhã." },
+    { titulo: "Iluminação", conteudo: "Flores tropicais amam luz indireta, enquanto girassóis precisam de sol pleno." }
+];
+
+// 2. RENDERIZAÇÃO DINÂMICA
+function initContent() {
+    const grid = document.getElementById('flower-grid');
+    const faq = document.getElementById('faq-container');
+
+    // Renderiza Cards
+    grid.innerHTML = flowerData.map(flower => `
+        <article class="card">
+            <img src="${flower.img}" alt="Foto de uma ${flower.nome}" style="width:100%; height:200px; object-fit:cover;">
+            <div style="padding: 1.5rem;">
+                <h3>${flower.nome}</h3>
+                <p>${flower.desc}</p>
+            </div>
+        </article>
+    `).join('');
+
+    // Renderiza Acordeões
+    faq.innerHTML = faqData.map((item, index) => `
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(${index})" role="button" aria-expanded="false">
+                ${item.titulo} <span>+</span>
+            </div>
+            <div class="accordion-content" id="faq-${index}" style="display:none; padding: 1.5rem; border-top: 1px solid #eee;">
+                ${item.conteudo}
+            </div>
+        </div>
+    `).join('');
+}
+
+// 3. ACESSIBILIDADE: CONTROLE DE FONTE
+let currentSize = 16;
+function changeFontSize(delta) {
+    currentSize += (delta * 2);
+    // Limites de segurança
+    if(currentSize < 12) currentSize = 12;
+    if(currentSize > 24) currentSize = 24;
+    document.documentElement.style.setProperty('--font-base', currentSize + 'px');
+}
+
+// 4. ACESSIBILIDADE: ALTO CONTRASTE
+function toggleContrast() {
+    document.body.classList.toggle('high-contrast');
+}
+
+// 5. COMPONENTE: ACORDEÃO
+function toggleAccordion(index) {
+    const contents = document.querySelectorAll('.accordion-content');
+    const content = document.getElementById(`faq-${index}`);
+    const isVisible = content.style.display === 'block';
+    
+    content.style.display = isVisible ? 'none' : 'block';
+}
+
+// 6. ANIMAÇÃO SCROLL REVEAL
+function revealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        if (revealTop < windowHeight - 100) {
+            el.classList.add('active');
+        }
+    });
+}
+
+// INICIALIZAÇÃO
+window.addEventListener('scroll', revealOnScroll);
+window.onload = () => {
+    initContent();
+    revealOnScroll();
+};
