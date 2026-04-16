@@ -1,0 +1,92 @@
+/* =========================================
+   VARIÁVEIS E TOKENS (Edite aqui as cores)
+   ========================================= */
+:root {
+    --primary: #2d5a27;       /* Verde Floresta */
+    --accent: #d4a373;        /* Tom Terroso */
+    --bg: #fefae0;            /* Creme Claro */
+    --text: #283618;          /* Marrom Escuro */
+    --white: #ffffff;
+    --radius: 12px;           /* Arredondamento padrão */
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-base: 16px;
+}
+
+/* =========================================
+   MODO ALTO CONTRASTE
+   ========================================= */
+body.high-contrast {
+    --bg: #000000;
+    --text: #ffff00;
+    --primary: #ffff00;
+    --accent: #ffffff;
+    --white: #000000;
+}
+
+/* =========================================
+   RESET E BASE
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: var(--font-base); scroll-behavior: smooth; }
+body { 
+    background-color: var(--bg); 
+    color: var(--text); 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* =========================================
+   LAYOUT (Mobile-First)
+   ========================================= */
+.grid-container {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+    /* EDITAR COLUNAS: 1 col mobile, 3 col desktop */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.section-padding { padding: 80px 5%; }
+.section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+
+/* =========================================
+   COMPONENTES
+   ========================================= */
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.card:hover { transform: translateY(-10px); }
+
+.accordion-item {
+    background: var(--white);
+    margin-bottom: 1rem;
+    border-radius: var(--radius);
+}
+
+.accordion-header {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+/* =========================================
+   ANIMAÇÕES (Scroll Reveal)
+   ========================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
